@@ -43,8 +43,6 @@ def webhook():
             dict = doc.to_dict()
             if rate in dict["rate"]:
                 result += "品項：" + dict["name"] + "\n"
-                result += "熱量：" + dict["calo"] + "\n"
-                result += "容量：" + dict["size"] + "\n"
                 result += "價格：" + dict["price"] + "\n\n"
         info += result
     return make_response(jsonify({"fulfillmentText": info}))
