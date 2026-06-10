@@ -42,7 +42,6 @@ def webhook():
         for doc in docs:
             dict = doc.to_dict()
             if name in dict["name"]:
-                result += "熱量：" + dict["calo"] + "\n"
                 result += "容量：" + dict["size"] + "\n"
                 result += "價格：" + dict["price"] + "\n\n"
         info += result
