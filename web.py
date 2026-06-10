@@ -30,8 +30,8 @@ def webhook():
     req = request.get_json(force=True)
     # fetch queryResult from json
     action =  req.get("queryResult").get("action")
-    msg =  req.get("queryResult").get("queryText")
-    info = "動作：" + action + "； 查詢內容：" + msg
+    #msg =  req.get("queryResult").get("queryText")
+    #info = "動作：" + action + "； 查詢內容：" + msg
     if (action == "rateChoice"):
         rate =  req.get("queryResult").get("parameters").get("rate")
         info = "我是星巴克聊天機器人，您選擇的系列是：" + rate + "，相關品項：\n"
@@ -43,8 +43,6 @@ def webhook():
             dict = doc.to_dict()
             if rate in dict["rate"]:
                 result += "品項：" + dict["name"] + "\n"
-                result += "熱量：" + dict["calo"] + "\n"
-                result += "容量：" + dict["size"] + "\n"
                 result += "價格：" + dict["price"] + "\n\n"
         info += result
     return make_response(jsonify({"fulfillmentText": info}))
