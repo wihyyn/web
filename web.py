@@ -33,7 +33,7 @@ def webhook():
     #msg =  req.get("queryResult").get("queryText")
     info = "動作：" + action + "； 查詢內容：" + msg
     if (action == "series"):
-        rate =  req.get("queryResult").get("parameters").get("name")
+        name =  req.get("queryResult").get("parameters").get("name")
         info = "我是星巴克聊天機器人，您選擇的系列是：" + name + "，相關品項：\n"
         db = firestore.client()
         collection_ref = db.collection("星巴克星推薦飲品")
