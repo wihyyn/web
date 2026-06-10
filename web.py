@@ -46,7 +46,4 @@ def webhook():
                 result += "價格：" + dict["price"] + "\n\n"
         info += result
     return make_response(jsonify({"fulfillmentText": info}))
-
-if __name__ == "__main__":
-    app.run(debug=True)
     
