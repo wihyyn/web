@@ -32,17 +32,18 @@ def webhook():
     #action =  req.get("queryResult").get("action")
     #msg =  req.get("queryResult").get("queryText")
     info = "動作：" + action + "； 查詢內容：" + msg
-    if (action == "rateChoice"):
-        rate =  req.get("queryResult").get("parameters").get("rate")
-        info = "我是星巴克聊天機器人，您選擇的系列是：" + rate + "，相關品項：\n"
+    if (action == "series"):
+        rate =  req.get("queryResult").get("parameters").get("name")
+        info = "我是星巴克聊天機器人，您選擇的系列是：" + name + "，相關品項：\n"
         db = firestore.client()
         collection_ref = db.collection("星巴克星推薦飲品")
         docs = collection_ref.get()
         result = ""
         for doc in docs:
             dict = doc.to_dict()
-            if rate in dict["rate"]:
-                result += "品項：" + dict["name"] + "\n"
+            if name in dict["name"]:
+                result += "熱量：" + dict["calo"] + "\n"
+                result += "容量：" + dict["size"] + "\n"
                 result += "價格：" + dict["price"] + "\n\n"
         info += result
     return make_response(jsonify({"fulfillmentText": info}))
